@@ -15,10 +15,12 @@ int main(void)
 {
     int *height;    //배열의 첫 번째 요소의 포인터
     int number;    //인원 = 배열 height의 요소 개수
+
     printf("사람 수 : ");
     scanf("%d", &number);
     
     height = calloc(number, sizeof(int));   //요소 개수 number 개인 배열을 생성
+    
     printf("%d 사람의 키를 입력하세요.\n", number);
     for(int i=0; i<number; i++)
     {
