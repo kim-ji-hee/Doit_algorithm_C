@@ -38,6 +38,7 @@ Date After(Date x, int n)
             x.m = 1;
             x.y++;
         }
+        
         n -= mdays[isleap(x.y)][x.m - 1] - x.d;
 
         while(n > mdays[isleap(x.y)][x.m - 1])
