@@ -99,7 +99,7 @@ int Search(const IntQueue* q, int x)
 void Print(const IntQueue* q)
 {
 	for (int i = 0; i < q->num; i++)
-		printf("%d ", ->que[(i + q->front) % q->max);
+		printf("%d ", q->que[(i + q->front) % q->max]);
 	printf("\n");
 }
 
