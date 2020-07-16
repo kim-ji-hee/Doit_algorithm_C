@@ -1,4 +1,4 @@
-//int형 집합 프로그램 헤더
+//int형 집합 프로그램 헤더(IntSet.h)
 #ifndef ___IntSet
 #define ___IntSet
 
