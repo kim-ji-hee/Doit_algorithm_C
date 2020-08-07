@@ -41,16 +41,60 @@ Node *search(List *list, const Member *x, int compare(const Member *x, const Mem
 }
 
 //머리에 노드를 삽입
-void InsertFront(List *list, const Member *x);
+void InsertFront(List *list, const Member *x)
+{
+    Node *ptr = list->head;
+    list->head = list->crnt = AllocNode();
+    SetNode(list->head, x, ptr);
+}
 
 //꼬리에 노드를 삽입
-void InsertRear(List *list, const Member *x);
+void InsertRear(List *list, const Member *x)
+{
+    if(list->head == NULL)      //비어 있는 경우
+        InsertFront(list, x);   //머리에 삽입
+    else{
+        Node *ptr = list->head;
+        while(ptr->next != NULL)
+            ptr = ptr->next;
+        ptr->next = list->crnt = AllocNode();
+        SetNode(ptr->next, x, NULL);
+    }
+}
 
 //머리 노드를 삭제
-void RemoveFront(List *list);
+void RemoveFront(List *list)
+{
+    if(list->head != NULL)
+    {
+        Node *ptr = list->head->next;   //두 번째 노드에 대한 포인터
+        free(list->head);               //머리 노드를 해제
+        list->head = list->crnt = ptr;  //새로운 머리 노드   
+    }
+}
 
 //꼬리 노드를 삭제
-void RemoveRear(List *list);
+void RemoveRear(List *list)
+{
+    if(list->head != NULL)
+    {
+        if((list->head)->next == NULL)  //노드가 1개만 있는 경우
+            removeFront(list);          //머리 노드를 삭제
+        else
+        {
+            Node *ptr = list->head;
+            Node *pre;
+            while(ptr->next != NULL)
+            {
+                pre = ptr;
+                ptr = ptr->next;
+            }
+            pre->next = NULL;   //pre는 꼬리 노드로부터 두 번째 노드
+            free(ptr);          //ptr은 꼬리 노드
+            list->crnt = pre;
+        }
+    }
+}
 
 //선택한 노드를 삭제
 void RemoveCurrent(List *list);
